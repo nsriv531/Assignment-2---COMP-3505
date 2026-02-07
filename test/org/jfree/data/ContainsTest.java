@@ -18,10 +18,37 @@ class ContainsTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	}
+	
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	void testContainsUpperBound() {
+		Range r = new Range(-5.0,16.0);
+		assertTrue(r.contains(16.0));
 	}
+	
+	@Test
+	void testContainsLowerBound() {
+		Range r = new Range(-5.0,16.0);
+		assertTrue(r.contains(-5.0));
+	}
+	
+	@Test
+	void testContainsAboveUpperBoundReturnsFalse() {
+		Range r = new Range(-5.0,16.0);
+		assertFalse(r.contains(25.25));
+	}
+	
+	@Test
+	void testContainsBelowLowerBoundReturnsFalse() {
+		Range r = new Range(-5.0,16.0);
+		assertFalse(r.contains(-10.50));
+	}
+	
+	@Test
+	void testContainsInRangeReturnsTrue() {
+		Range r = new Range(-5.0,16.0);
+		assertTrue(r.contains(2.3456));
+	}
+	
 	@AfterEach
   	void tearDown() throws Exception {
   	}
