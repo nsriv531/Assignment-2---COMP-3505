@@ -19,11 +19,11 @@ class RangeTest {
 	void setUp() throws Exception {
 	}
 	
-	@Test
-	void test() {
-		exampleRange = new Range(1,5);
-		assertEquals(3,exampleRange.getCentralValue(),0.1d,"The central value of (1,5) is 3");
-	}
+		@Test
+		void test() {
+			exampleRange = new Range(1,5);
+			assertEquals(3,exampleRange.getCentralValue(),0.1d,"The central value of (1,5) is 3");
+		}
 	
 	@AfterEach
   	void tearDown() throws Exception {
