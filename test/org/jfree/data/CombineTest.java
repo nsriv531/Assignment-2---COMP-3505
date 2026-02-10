@@ -20,12 +20,12 @@ class CombineTest {
 	}
 
 	@Test
-	void testCombineOverlappingRanges() {
+	void testCombineFullyOverlappingRanges() {
 		Range r1 = new Range(-15.75,15.25);
 		Range r2 = new Range(13.75,14.00);
 		Range result = Range.combine(r2, r1);
-		assertEquals(result.getLowerBound(),-15.75);
-		assertEquals(result.getUpperBound(),15.25);
+		assertEquals(-15.75,result.getLowerBound());
+		assertEquals(15.25,result.getUpperBound());
 	}
 	
 	@Test
@@ -33,16 +33,33 @@ class CombineTest {
 		Range r1 = new Range(10.5,30.45);
 		Range r2 = new Range(5.5,10);
 		Range result = Range.combine(r1, r2);
-		assertEquals(result.getUpperBound(),30.45);
-		assertEquals(result.getLowerBound(),5.5);
+		assertEquals(5.5,result.getLowerBound());
+		assertEquals(30.45,result.getUpperBound());
 	}
 	
 	@Test
-	void testCombineWithOneNullRange() {
+	void testCombineBorderOverlappingRanges() {
+		Range r1 = new Range(10.0,15.0);
+		Range r2 = new Range(5.0,10.0);
+		Range result = Range.combine(r1, r2);
+		assertEquals(5.0,result.getLowerBound());
+		assertEquals(15.0,result.getUpperBound());
+	}
+	
+	@Test
+	void testCombineWithFirstRangeNull() {
 		Range r1 = null;
 		Range r2 = new Range(-15.75,15);
 		Range result = Range.combine(r1, r2);
-		assertEquals(result, r2);
+		assertEquals(r2,result);
+	}
+	
+	@Test
+	void testCombineWithSecondRangeNull() {
+		Range r1 = new Range(1.0,5.0);
+		Range r2 = null;
+		Range result = Range.combine(r1, r2);
+		assertEquals(r1,result);
 	}
 	
 	@Test

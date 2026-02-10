@@ -8,7 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ConstrainTest {
-
+	
 	private Range exampleRange;
 	
 	@BeforeAll
@@ -18,6 +18,7 @@ class ConstrainTest {
 	@BeforeEach
 	void setUp() throws Exception {
 	}
+	
 	@Test
 	void testConstrainBelowRange() {
 		Range r = new Range(-150.80,69.69);
@@ -26,10 +27,24 @@ class ConstrainTest {
 	}
 	
 	@Test
+	void testConstrainOnLowerBound() {
+		Range r = new Range(-150.80,69.69);
+		double result = r.constrain(-150.80);
+		assertEquals(-150.80,result);
+	}
+	
+	@Test
 	void testConstrainInRange() {
 		Range r = new Range(-150.80,69.69);
 		double result = r.constrain(40.0);
 		assertEquals(40.0,result);
+	}
+	
+	@Test
+	void testConstrainOnUpperBound() {
+		Range r = new Range(-150.80,69.69);
+		double result = r.constrain(69.69);
+		assertEquals(69.69,result);
 	}
 	
 	@Test

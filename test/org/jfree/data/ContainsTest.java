@@ -8,9 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 class ContainsTest {
-
-	private Range exampleRange;
 	
+	private Range exampleRange;
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -20,31 +19,31 @@ class ContainsTest {
 	}
 	
 	@Test
-	void testContainsUpperBound() {
+	void testContainsUpperBoundIsTrue() {
 		Range r = new Range(-5.0,16.0);
 		assertTrue(r.contains(16.0));
 	}
 	
 	@Test
-	void testContainsLowerBound() {
+	void testContainsLowerBoundIsTrue() {
 		Range r = new Range(-5.0,16.0);
 		assertTrue(r.contains(-5.0));
 	}
 	
 	@Test
-	void testContainsAboveUpperBoundReturnsFalse() {
+	void testContainsAboveUpperBoundIsFalse() {
 		Range r = new Range(-5.0,16.0);
 		assertFalse(r.contains(25.25));
 	}
 	
 	@Test
-	void testContainsBelowLowerBoundReturnsFalse() {
+	void testContainsBelowLowerBoundIsFalse() {
 		Range r = new Range(-5.0,16.0);
 		assertFalse(r.contains(-10.50));
 	}
 	
 	@Test
-	void testContainsInRangeReturnsTrue() {
+	void testContainsInRangeIsTrue() {
 		Range r = new Range(-5.0,16.0);
 		assertTrue(r.contains(2.3456));
 	}
