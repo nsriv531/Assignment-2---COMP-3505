@@ -40,6 +40,12 @@ class GetUpperBoundTest {
         Range r = new Range(3.0, 3.0);
         assertEquals(3.0, r.getUpperBound(), 0.0);
     }
+    
+    @Test
+    void testGetUpperBoundZero() {
+        Range r = new Range(-5.0,0.0);
+        assertEquals(0.0,r.getUpperBound(), 0.0);
+    }
 
     @AfterEach
     void tearDown() throws Exception {
