@@ -9,8 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class CombineTest {
 
-	private Range exampleRange;
-	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
 	}
@@ -23,7 +21,7 @@ class CombineTest {
 	void testCombineFullyOverlappingRanges() {
 		Range r1 = new Range(-15.75,15.25);
 		Range r2 = new Range(13.75,14.00);
-		Range result = Range.combine(r2, r1);
+		Range result = Range.combine(r1, r2);
 		assertEquals(-15.75,result.getLowerBound());
 		assertEquals(15.25,result.getUpperBound());
 	}
@@ -38,7 +36,7 @@ class CombineTest {
 	}
 	
 	@Test
-	void testCombineBorderOverlappingRanges() {
+	void testCombinePartialOverlappingRanges() {
 		Range r1 = new Range(10.0,15.0);
 		Range r2 = new Range(5.0,10.0);
 		Range result = Range.combine(r1, r2);
@@ -68,6 +66,15 @@ class CombineTest {
 		Range r2 = null;
 		Range result = Range.combine(r1, r2);
 		assertNull(result);
+	}
+	
+	@Test
+	void testCombineNotOverlappingZeroWidthRanges() {
+		Range r1 = new Range(2.0,2.0);
+		Range r2 = new Range(5.0,5.0);
+		Range result = Range.combine(r2,r1);
+		assertEquals(2.0,result.getLowerBound());
+		assertEquals(5.0,result.getUpperBound());
 	}
 
 	@AfterEach

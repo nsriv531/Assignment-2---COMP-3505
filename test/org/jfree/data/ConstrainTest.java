@@ -9,7 +9,6 @@ import org.junit.jupiter.api.Test;
 
 class ConstrainTest {
 	
-	private Range exampleRange;
 	
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
