@@ -44,4 +44,23 @@ class ExpandTest {
         assertEquals(3.0, expanded.getLowerBound(), 0.0000001);
         assertEquals(3.0, expanded.getUpperBound(), 0.0000001);
     }
+
+    @Test
+    void testExpandWithNegativeMarginsReturnsShrunkenRangeForExpand() {
+        Range base = new Range(2.0,6.0);
+        Range expanded = Range.expand(base, -0.5, 0.0);
+        
+        assertEquals(4.0, expanded.getLowerBound(), .0000001);
+        assertEquals(6.0, expanded.getUpperBound(), .0000001);
+    }
+    
+    @Test
+    void testExpandWithMarginsGreaterOrEqualToOne() {
+        Range base = new Range(2.0,6.0);
+        Range expanded = Range.expand(base, 2.0, 1.0);
+        
+        assertEquals(-6.0, expanded.getLowerBound(), .0000001);
+        assertEquals(10.0, expanded.getUpperBound(), .0000001);
+    }
+
 }
